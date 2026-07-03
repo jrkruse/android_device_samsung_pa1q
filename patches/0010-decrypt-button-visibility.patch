@@ -1,0 +1,19 @@
+--- a/gui/theme/common/portrait.xml
++++ b/gui/theme/common/portrait.xml
+@@ -2841,10 +2841,14 @@
+ 				<action function="page">usb_mount</action>
+ 			</button>
+ 
++			<!-- Check for lockscreen credential file (spblob) instead of relying on
++			     stock TW_IS_ENCRYPTED/TW_IS_DECRYPTED which are unreliable when
++			     using our A16 stack instead of stock cryptfs. -->
++			<action function="fileexists">/data/system_de/0/spblob</action>
++
+ 			<button style="main_button_half_height">
+ 				<conditions>
+-					<condition var1="tw_is_encrypted" var2="1"/>
+-					<condition var1="tw_is_decrypted" var2="0"/>
++					<condition var1="tw_fileexists" var2="1"/>
+ 				</conditions>
+ 				<placement x="%center_x%" y="%row18a_y%"/>
+ 				<text>{@decrypt_data_btn=Decrypt Data}</text>
